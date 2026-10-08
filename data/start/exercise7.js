@@ -3,15 +3,23 @@
 // synth plays one note at a time, like one voice singing. That's all Tuesday's riff needed.
 // A chord is several notes sounding at the same time. For that we need chordSynth, made in
 // setup.js: a PolySynth ("poly" means many), which can play several notes at once.
-const bottomNote = "c4";
-const middleNote = "e4";
-const topNote = "g4";
+let bottomNote = "C4";
+let middleNote = "E4";
+let topNote = "G4";
+
+
 
 function exercise7(start) {
-  synth.triggerAttackRelease(bottomNote, "2n", start);
-  synth.triggerAttackRelease(middleNote, "2n", start);
-  synth.triggerAttackRelease(topNote, "2n", start);
+  chordSynth.triggerAttackRelease(bottomNote, "2n", start);
+  chordSynth.triggerAttackRelease(middleNote, "2n", start);
+  chordSynth.triggerAttackRelease(topNote, "2n", start);
+  chordSynth.triggerAttackRelease(bottomNote, "2n", start)
 }
+
+const chord = bottomNote + " wow " + middleNote + " wow " + topNote;
+console.log(chord.toUpperCase());
+console.log(chord.length);
+console.log(chord);
 
 // TODO 7a: play exercise 7 as it is. How many notes do you hear? Read the red error in the console.
 // TODO 7b: in exercise7, change synth to chordSynth in all three calls. Play again.

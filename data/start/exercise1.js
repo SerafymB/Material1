@@ -13,10 +13,23 @@
 // TODO 1c: on a new line under the variables, change duration: duration = "2n";  Play. Hear the difference?
 // TODO 1d: try the same with note: note = "D4";  Read the error in the console. Then delete that line.
 
+let note1 = "D";
+let note3 = "A";
+let note4 = "B";
+let note2 = Math.floor(Math.random () * 8) + 2;
+let twonotes = note1 + note2;
+let othernotes = note3 + note2;
+let tree = note4 + note2;
+
+let secondOne = "n"
+let secondSecond = Math.floor(Math.random () * 16) + 1;
+let twosecond = secondSecond + secondOne;
+
 function exercise1(start) {
-  synth.triggerAttackRelease("C4", "8n", start);
-  synth.triggerAttackRelease("E4", "8n", start + 0.5);
-  synth.triggerAttackRelease("G4", "8n", start + 1);
+  synth.triggerAttackRelease(tree, twosecond, start);
+  synth.triggerAttackRelease(twonotes, twosecond, start + 0.5);
+  synth.triggerAttackRelease(othernotes, twosecond, start + 1);
+  synth.triggerAttackRelease(othernotes, twosecond, start + 1.5);
 }
 
 // ---------- You don't need to change anything below this line ----------
