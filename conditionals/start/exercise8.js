@@ -3,18 +3,19 @@
 // Logging which block ran is how you find out which one, and why.
 
 function exercise8(start) {
-  let bpm = 150; // a fast tempo: you should hear the high, fast pattern
+  let bpm = 410; // a fast tempo: you should hear the high, fast pattern
+  console.log("Exercise 8: Initially, the first condition runs and the second one never does because bpm argument is " + bpm + " fits in the first condition and therefore stays there, never reaching the second condition");
 
   // TODO 8a: as the first line of each block, log which block ran and why, for example:
   //            console.log("Exercise 8: playing the slow pattern because bpm is " + bpm);
   // TODO 8b: press the button. Which block ran? Is it the one you expected for 150?
   // TODO 8c: fix the order of the questions, so 150 plays the fast pattern and 90 still plays
   //          the middle one. Then test 50, 90 and 150.
-  if (bpm > 60) {
+  if (bpm === 40) {
     // middle: two notes
     synth.triggerAttackRelease("C4", "8n", start);
     synth.triggerAttackRelease("E4", "8n", start + 0.25);
-  } else if (bpm > 120) {
+  } else if (bpm > 60) {
     // fast: four high notes
     synth.triggerAttackRelease("C5", "16n", start);
     synth.triggerAttackRelease("E5", "16n", start + 0.125);

@@ -3,7 +3,20 @@
 // The rest are skipped.
 
 function exercise6(start) {
-  let bpm = 90; // try 60, 100 and 140
+  let bpm = 110; // try 60, 100 and 140
+  let regroup = 210;
+  let beast = 80;
+  const average = beast / regroup;
+  console.log(average);
+
+  if (bpm > 100) {
+  synth.triggerAttackRelease(E4, "4n", start);
+  } else if (bpm > 200) {
+    synth.triggerAttackRelease(D5, "8n", start);
+  } else {
+    synth.triggerAttackRelease(D2, "2n", start)
+    synth.triggerAttackRelease(B4, "4n", start + 1)
+  }
 
   // TODO 6a: pick a note from the tempo band:
   //            slower than 80:        play "C3", a low note

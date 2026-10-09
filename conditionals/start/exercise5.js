@@ -7,6 +7,12 @@ function exercise5(start) {
   const note = "C4";
   const duration = "4n";
 
+if (isMuted) {
+console.log("Exercise 5: muted, so nothing plays");
+} else {
+console.log("...the line that plays...");
+}
+
   // TODO 5a: put the line below inside an if / else, so the boolean decides:
   //            if (isMuted) {
   //              console.log("Exercise 5: muted, so nothing plays");
