@@ -21,12 +21,9 @@ const synth = new Tone.Synth().toDestination();
 // Plays three notes, timed from start.
 // TODO 2: change the notes to ones you like. A note is A to G, then a number: "D4", "A3".
 
-const pitchName = "D";
-let octave = 5;
-octave = octave + 1;
-let fullNote = pitchName + octave;
-let random = Math.random * 6 + 1;
-let fewer =random + "n";
+let random = Math.floor(Math.random() * 6) + 1;
+let fewer = random + "n";
+console.log("The actual note is: " + fewer);
 
 function playRiff(start) {
   synth.triggerAttackRelease(fullNote, fewer, start);
@@ -50,12 +47,13 @@ function playy (start) {
   synth.triggerAttackRelease("F4", "8n", 15.75);
   synth.triggerAttackRelease("F#4", "8n", 16);
   synth.triggerAttackRelease("G4", "8n", 16.25);
+}
 
 // The whole song, timed from start.
 function song(start) {
   playRiff(start);
   playRiff(start + 4);
-  playy(start + 11);
+  playy(start + 10);
   // TODO 4: call playRiff again, two seconds after the first one
 }
 
@@ -67,4 +65,4 @@ const button = document.getElementById("play");
 button.addEventListener("click", async () => {
   await Tone.start();
   song(Tone.now());
-}
+});

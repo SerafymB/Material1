@@ -32,7 +32,7 @@ function exercise2(start) {
   synth.triggerAttackRelease(full, actual, start + 5);
   synth.triggerAttackRelease(monn, actual, start + 5.5);
   synth.triggerAttackRelease(fullNote, actual, start + 6);
-    synth.triggerAttackRelease(fullNote, actual, start + 7);
+  synth.triggerAttackRelease(fullNote, actual, start + 7);
 }
 
 // ---------- You don't need to change anything below this line ----------
