@@ -8,20 +8,70 @@ const synth = new Tone.Synth().toDestination();
 // The octave every note is played in. Exercise 7 plays one higher with Shift.
 let octave = 4;
 
-function handleKeyDown(event) {
-  Tone.start(); // sound can only start after a key press or a click
-  console.log(event.key);
+//function letterNote(key, oct) {
+//  if (key.length === 1 && key >= "a" && key <= "g") {
+//    return key.toUpperCase() + oct;
+//  }
+//  return "";
+//}
 
-  if (event.key === "a") {
-    synth.triggerAttackRelease("C4", "8n");
-  } else if (event.key === "s") {
-    synth.triggerAttackRelease("D4", "8n");
-  } else if (event.key === "d") {
-    synth.triggerAttackRelease("E4", "8n");
+function handleKeyDown(event) {
+  Tone.start();
+  const note = noteForKey(event.key, octave);
+  if (note !== "") {
+    synth.triggerAttackRelease(note, "8n");
+  } else {
+    synth.triggerAttackRelease(note, "16n");
   }
 }
 
+function noteForKey(key, oct) {
+  if (key === "A") {
+    return "C" + oct;
+  } else if (key === "d") {
+    return "D" + oct;
+  } else if (key === "k") {
+    return "E" + oct;
+  }
+}
+
+//letterNote();
+handleKeyDown();
+noteForKey();
+
+//TODO 6c: in handleKeyDown, ask noteForKey, and play only if the answer isn't "":
+//            const note = noteForKey(event.key, octave);
+//            if (note !== "") {
+//              synth.triggerAttackRelease(note, "8n");
+//            }
+
+//Use if / else if: "a" gives back "C" + oct,
+//          "s" gives back "D" + oct … and "k" gives back "C" + (oct + 1). Any other key: "".
+//function handleKeyDown(event) {
+//  Tone.start(); // sound can only start after a key press or a click
+//  console.log(event.key);
+// if (event.key.length === 1 && event.key >= "a" && event.key <= "g") {
+//   const note = event.key.toUpperCase() + octave;
+//   synth.triggerAttackRelease(note, "8n");
+// }
+// if (event.key === "a") {
+//    synth.triggerAttackRelease("C4", "8n");
+// } else if (event.key === "s") {
+//  synth.triggerAttackRelease("D4", "8n");
+//} else if (event.key === "d") {
+// synth.triggerAttackRelease("E4", "8n");
+//}
+//}
+
 document.addEventListener("keydown", handleKeyDown);
+//console.log("c" >= "a");
+//console.log("h" <= "g");
+//console.log("Enter" >= "a");
+
+//if (event.key.length === 1 && event.key >= "a" && event.key <= "g") {
+//  const note = event.key.toUppercase + octave;
+//}
+//synth.triggerAttackRelease(note, "8n");
 
 // ---------- Exercise 5: keys are note names ----------
 // The letter IS the note: press c, hear C.
