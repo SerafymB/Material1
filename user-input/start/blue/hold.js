@@ -3,7 +3,7 @@
 // After each step: save, click the page, press keys, check the console, and commit.
 
 // The instrument. B1 changes it.
-const synth = new Tone.Synth().toDestination();
+const synth = new Tone.PolySynth().toDestination();
 
 // What the instrument remembers between key presses.
 let octave = 4;

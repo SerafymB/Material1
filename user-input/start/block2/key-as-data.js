@@ -4,40 +4,52 @@
 
 // The instrument: plays one note at a time.
 const synth = new Tone.Synth().toDestination();
+document.addEventListener("keydown", handleKeyDown);
 
 // The octave every note is played in. Exercise 7 plays one higher with Shift.
 let octave = 4;
 
-//function letterNote(key, oct) {
-//  if (key.length === 1 && key >= "a" && key <= "g") {
-//    return key.toUpperCase() + oct;
+function letterNote(key, oct) {
+  if (key.length === 1 && key >= "a" && key <= "g") {
+    return key.toUpperCase() + oct;
+  }
+  return "";
+}
+
+//function handleKeyDown(event) {
+//  Tone.start();
+//  const note = noteForKey(event.key, octave);
+//  if (note !== "") {
+//    synth.triggerAttackRelease(note, "8n");
+//  } else {
+//    synth.triggerAttackRelease(note, "16n");
 //  }
-//  return "";
 //}
 
 function handleKeyDown(event) {
   Tone.start();
-  const note = noteForKey(event.key, octave);
+  let playOctave = octave;
+  if (event.shiftKey) {
+    playOctave = octave + 1;
+  }
+  const note = noteForKey(event.key.toLowerCase(), playOctave);
   if (note !== "") {
     synth.triggerAttackRelease(note, "8n");
-  } else {
-    synth.triggerAttackRelease(note, "16n");
   }
+  console.log(note);
 }
 
 function noteForKey(key, oct) {
-  if (key === "A") {
+  if (key === "a") {
     return "C" + oct;
   } else if (key === "d") {
     return "D" + oct;
   } else if (key === "k") {
     return "E" + oct;
+  } else {
+    return "";
   }
 }
-
-//letterNote();
-handleKeyDown();
-noteForKey();
 
 //TODO 6c: in handleKeyDown, ask noteForKey, and play only if the answer isn't "":
 //            const note = noteForKey(event.key, octave);
@@ -63,7 +75,34 @@ noteForKey();
 //}
 //}
 
-document.addEventListener("keydown", handleKeyDown);
+const metal = new Tone.MetalSynth().toDestination();
+document.addEventListener("keydown", function (event) {
+  Tone.start();
+  console.log(event.key);
+  let key = event.key;
+  if (key === "s") {
+    metal.frequency.value = 400;
+    metal.envelope.decay = 0.3;
+    metal.resonance = 2000;
+    metal.triggerAttackRelease("4n");
+  } else if (key === "g") {
+    metal.frequency.value = 500;
+    metal.envelope.decay = 0.3;
+    metal.resonance = 3000;
+    metal.triggerAttackRelease("16n");
+  } else if (key === "l") {
+    metal.frequency.value = 360;
+    metal.envelope.decay = 0.9;
+    metal.resonance = 5000;
+    metal.triggerAttackRelease("8n");
+  } else if (key === "h") {
+    metal.frequency.value = 200;
+    metal.envelope.decay = 0.4;
+    metal.resonance = 5023;
+    metal.triggerAttackRelease("8n");
+  }
+});
+
 //console.log("c" >= "a");
 //console.log("h" <= "g");
 //console.log("Enter" >= "a");
