@@ -50,11 +50,24 @@ function startSound(event) {
   Tone.start(); // browsers only allow sound after a click or a key press
 }
 
+  const randomColor1 = Math.floor(Math.random *500) + 1;
+  const randomColor2 = Math.floor(Math.random * 500) + 1;
+  const randomColor3 = Math.floor(Math.random * 300) + 1;
+
+console.log(randomColor1);
+
+function pointerEnter(event) {
+  synth.triggerAttackRelease("D4", "20n");
+  shape.setColour(50, 100, 60);
+}
+
+
+
 // ---------- Setup ----------
 function setup() {
   // TODO 1a goes here
-
   window.addEventListener("pointerdown", startSound);
+  window.addEventListener("pointerdown", pointerEnter);
   // TODO 2a, 3a and 4a: listen on shape.element here
 }
 

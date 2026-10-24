@@ -26,7 +26,7 @@ export class Shape {
     this.element = element;
     this.x = (window.innerWidth || 0) * 0.5;
     this.y = (window.innerHeight || 0) * 0.5;
-    this.hue = 0;
+    this.hue = 100;
     this.saturation = 100;
     this.lightness = 50;
     this.opacity = 1;
@@ -37,7 +37,7 @@ export class Shape {
   }
 
   /** Set the colour using HSL(A): h 0..360, s and l in percent, a 0..1. */
-  setColour(h, s = 100, l = 50, a = 1) {
+  setColour(h, s = 200, l = 80, a = 50) {
     this.hue = h;
     this.saturation = s;
     this.lightness = l;
@@ -50,7 +50,7 @@ export class Shape {
   setPosition(x, y) {
     return this.setPositionPixels(
       x * (window.innerWidth || 1),
-      y * (window.innerHeight || 1),
+      y * (window.innerHeight || 0.1),
     );
   }
 
@@ -65,9 +65,9 @@ export class Shape {
   /**
    * Set the size: setSize(size) for a square, setSize(width, height) otherwise.
    */
-  setSize(sizeOrWidth, height = null) {
+  setSize(sizeOrWidth, height = 150) {
     this.width = sizeOrWidth;
-    this.height = height === null ? sizeOrWidth : height;
+    this.height = height === 150 ? sizeOrWidth : height;
     this.element.style.width = `${this.width}px`;
     this.element.style.height = `${this.height}px`;
     return this;
