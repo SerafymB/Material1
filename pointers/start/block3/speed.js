@@ -59,6 +59,13 @@ function keyDown(event) {
 function pointerMove(event) {
   let normX = event.clientX / window.innerWidth;
   let normY = event.clientY / window.innerHeight;
+  let now = Date.now();
+  let distance = Math.hypot(normX - lastX, normY - lastY);
+  let seconds = (now - lastTime) / 1000;
+  let speed = distance / seconds;
+  console.log(speed);
+  console.log(lastX, lastY, lastTime)
+  synth.detune.value = speed * 300;
   // TODO 7a and 8a go here
 }
 

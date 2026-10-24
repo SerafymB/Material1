@@ -46,28 +46,60 @@ const synth = new Tone.Synth().toDestination();
 // 4d In a comment: hovering or pressing, which feels more like an instrument to you?
 
 // ---------- Controls (Event Handlers) ----------
+
 function startSound(event) {
   Tone.start(); // browsers only allow sound after a click or a key press
 }
 
-  const randomColor1 = Math.floor(Math.random *500) + 1;
-  const randomColor2 = Math.floor(Math.random * 500) + 1;
-  const randomColor3 = Math.floor(Math.random * 300) + 1;
+//  let randomColor1 = Math.floor(Math.random () * 400) + 1;
+//  let randomColor2 = Math.floor(Math.random () * 250) + 1;
+//  let randomColor3 = Math.floor(Math.random () * 100) + 1;
+//  const randomNote = ["D1", "E4", "E3", "D4", "A3", "A4", "B3", "F2", "G4"]
+//  const duration   = ["8n", "8n", "8n", "20n", "16n", "10n", "8n", "12n", "8n"]
+//  let counter = Math.floor(Math.random () * 8) + 1;
 
-console.log(randomColor1);
+//console.log(randomColor1, randomColor2, randomColor3);
+//
+//function pointerEnter(event) {
+//  synth.triggerAttackRelease(randomNote[counter], duration[counter]);
+//  shape.setColour(randomColor1, randomColor2, randomColor3);
+//  randomColor1 = Math.floor(Math.random () * 400) + 1;
+//  randomColor2 = Math.floor(Math.random () * 200) + 1;
+//  randomColor3 = Math.floor(Math.random () * 100) + 1;
+//  console.log("The settings for the color for the circle are ", randomColor1, randomColor2, randomColor3);
+//  counter = Math.floor(Math.random () * 8) + 1;
+//  console.log(randomNote[counter], duration[counter]);
+//}
+
+//function pointerEnter(event) {
+//  synth.triggerAttack("A3");
+//  shape.setColour(200, 10, 40)
+//}
+
+//function pointerRelease(event) {
+//  synth.triggerRelease("");
+//  shape.setColour(200, 10, 40)
+//}
 
 function pointerEnter(event) {
-  synth.triggerAttackRelease("D4", "20n");
+  Tone.start()
+  synth.triggerAttack(note);
+  console.log("C4 should be playing now")
   shape.setColour(50, 100, 60);
 }
 
-
+function pointerLeave(event) {
+  synth.triggerRelease();
+  console.log("C4 should be released now")
+  shape.setColour(200, 80, 50);
+}
 
 // ---------- Setup ----------
 function setup() {
   // TODO 1a goes here
   window.addEventListener("pointerdown", startSound);
   window.addEventListener("pointerdown", pointerEnter);
+  window.addEventListener("pointerdown", pointerLeave);
   // TODO 2a, 3a and 4a: listen on shape.element here
 }
 
