@@ -63,13 +63,39 @@ function pointerLeave(event) {
 
 function pointerMove(event) {
   // TODO 12a, 13a go here
+  if (!inside) {
+    return;
+  }
+ // let normX = event.clientX / window.innerWidth;
+ // let normY = event.clientY / window.innerHeight;
+ // let now = Date.now();
+ // let distance = Math.hypot(normX - lastX, normY - lastY);
+ // let seconds = (now - lastTime) / 1000;
+ // let speed = distance / seconds;
+ // console.log(speed);
+ // console.log(lastX, lastY, lastTime)
+ // synth.detune.value = speed * 300;
+
+ let normX = event.clientX / window.innerWidth;
+ let normY = event.clientY / window.innerHeight;
+ let now = Date.now();
+ let distance = Math.hypot(normX - lastX, normY - lastY);
+ let seconds = (now - lastTime) / 1000;
+ let speed = distance / seconds;
+ synth.detune.value = speed * 300;
+if (seconds === 0) {
+  return;
+}
+lastX = normX;
+lastY = normY;
+lastTime = now;
 }
 
 // ---------- Setup ----------
 function setup() {
   shape.setSize(200);
   shape.setColour(200, 80, 50);
-  shape.setPosition(0.4, 0.3);
+  shape.setPosition(0.1, 0.1);
 
   window.addEventListener("pointerdown", startSound);
   window.addEventListener("pointermove", pointerMove);

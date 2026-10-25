@@ -67,6 +67,7 @@ function pointerMove(event) {
 function forgetOldest() {
   speeds.shift();
   useAverage();
+  console.log("Speeds are: ", speeds);
 }
 
 // 9c and 11b: the average of everything still in the list bends the note.
@@ -74,6 +75,7 @@ function useAverage() {
   let total = 0;
   for (let i = 0; i < speeds.length; i++) {
     total = total + speeds[i];
+    console.log(total);
   }
   let average = 0; // 11c: an empty list means "not moving"
   if (speeds.length > 0) {

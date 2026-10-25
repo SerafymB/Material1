@@ -68,15 +68,28 @@ function pointerMove(event) {
   let now = Date.now();
   let distance = Math.hypot(normX - lastX, normY - lastY); // in screens
   let seconds = (now - lastTime) / 1000;
+  let speed = distance / seconds; // screens per second
+  let total = 0;
+  let average = 0;
   if (seconds === 0) {
+    speeds.push(speed);
+    console.log(speeds);
     return; // two events in the same millisecond: no time has passed, so no speed
   }
-  let speed = distance / seconds; // screens per second
+  if (speeds.length > 10) {
+    speeds.shift();
+  }
+  for (let parameters = 0; parameters < speeds.length; parameters++) {
+    total = total + speeds[parameters];
+    console.log("Average speeds shall be: ", total);
+    average = total / speeds.length;
+    console.log(average);
+  }
   lastX = normX;
   lastY = normY;
   lastTime = now;
 
-  synth.detune.value = speed * 300;
+  synth.detune.value = average * 300;
   // TODO 9a, 9b and 9c go here
 }
 
